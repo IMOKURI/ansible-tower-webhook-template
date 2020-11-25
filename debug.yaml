@@ -1,4 +1,15 @@
 - hosts: localhost
   tasks:
-    - debug:
+    - name: List all variables.
+      debug:
         var: hostvars[inventory_hostname]
+
+    - name: List webhook variables.
+      debug:
+        var: "{{ item }}"
+      with_items:
+        - tower_webhook_event_guid
+        - tower_webhook_event_ref
+        - tower_webhook_event_type
+        - tower_webhook_payload
+        - tower_webhook_status_api
